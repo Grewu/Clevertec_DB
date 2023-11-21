@@ -54,6 +54,13 @@ join ticket_flights on flights.flight_id = ticket_flights.flight_id
 where ticket_flights.fare_conditions != 'Business';
 
 6.Получить список аэропортов (airport_name) и городов (city), в которых есть рейсы с задержкой
+select distinct airport_name,
+		city
+from airports_data
+join flights on  airports_data.airport_code = flights.arrival_airport
+where status  = 'Arrived' 
+and (actual_arrival - flights.scheduled_arrival  > 0 * '1 sec'::interval);
+
 7.Получить список аэропортов (airport_name) и количество рейсов, вылетающих из каждого аэропорта, отсортированный по убыванию количества рейсов
 8.Найти все рейсы, у которых запланированное время прибытия (scheduled_arrival) было изменено и новое время прибытия (actual_arrival) не совпадает с запланированным
 9.Вывести код, модель самолета и места не эконом класса для самолета "Аэробус A321-200" с сортировкой по местам
