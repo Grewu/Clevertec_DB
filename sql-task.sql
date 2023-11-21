@@ -49,6 +49,10 @@ WHERE fare_conditions = 'Business'
 order by ticket_flights.ticket_no limit 10;
 
 5.Найти все рейсы, у которых нет забронированных мест в бизнес-классе (fare_conditions = 'Business')
+SELECT * from flights
+join ticket_flights on flights.flight_id = ticket_flights.flight_id
+where ticket_flights.fare_conditions != 'Business';
+
 6.Получить список аэропортов (airport_name) и городов (city), в которых есть рейсы с задержкой
 7.Получить список аэропортов (airport_name) и количество рейсов, вылетающих из каждого аэропорта, отсортированный по убыванию количества рейсов
 8.Найти все рейсы, у которых запланированное время прибытия (scheduled_arrival) было изменено и новое время прибытия (actual_arrival) не совпадает с запланированным
