@@ -62,6 +62,13 @@ where status  = 'Arrived'
 and (actual_arrival - flights.scheduled_arrival  > 0 * '1 sec'::interval);
 
 7.Получить список аэропортов (airport_name) и количество рейсов, вылетающих из каждого аэропорта, отсортированный по убыванию количества рейсов
+select airports_data.airport_name,
+flights.departure_airport,
+		count(flights.departure_airport) as flight_count 
+from airports_data
+join flights on  airports_data.airport_code = flights.departure_airport
+group by  airports_data.airport_name,flights.departure_airport;
+
 8.Найти все рейсы, у которых запланированное время прибытия (scheduled_arrival) было изменено и новое время прибытия (actual_arrival) не совпадает с запланированным
 9.Вывести код, модель самолета и места не эконом класса для самолета "Аэробус A321-200" с сортировкой по местам
 10.Вывести города, в которых больше 1 аэропорта (код аэропорта, аэропорт, город)
