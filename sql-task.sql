@@ -82,6 +82,15 @@ join seats s on a.aircraft_code = s.aircraft_code
 where s.fare_conditions != 'Economy' and
 	  a.model = 'Аэробус A321-200'
 order by a.aircraft_code;
+9.Вывести код, модель самолета и места не эконом класса для самолета "Аэробус A321-200" с сортировкой по местам
+SELECT a.aircraft_code,
+		a.model,
+		s.fare_conditions
+   FROM aircrafts a 
+join seats s on a.aircraft_code = s.aircraft_code
+where s.fare_conditions != 'Economy' and
+	  a.model = 'Аэробус A321-200'
+order by a.aircraft_code;
 10.Вывести города, в которых больше 1 аэропорта (код аэропорта, аэропорт, город)
 select airport_code, airport_name,city
 from airports a1
