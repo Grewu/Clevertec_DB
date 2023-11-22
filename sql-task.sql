@@ -108,8 +108,12 @@ GROUP BY
     t.passenger_id, t.passenger_name
 HAVING
    SUM(b.total_amount) > (SELECT AVG(total_amount) FROM bookings);
-
 12.Найти ближайший вылетающий рейс из Екатеринбурга в Москву, на который еще не завершилась регистрация
+SELECT *
+FROM flights f
+WHERE f.departure_airport = 'SVX' 
+  AND f.arrival_airport IN ('SVO', 'VKO', 'DME') 
+  AND f.status IN ('Scheduled', 'On Time', 'Delayed');
 13.Вывести самый дешевый и дорогой билет и стоимость (в одном результирующем ответе)
 14.Написать DDL таблицы Customers, должны быть поля id, firstName, LastName, email, phone. Добавить ограничения на поля (constraints)
 15.Написать DDL таблицы Orders, должен быть id, customerId, quantity. Должен быть внешний ключ на таблицу customers + constraints
