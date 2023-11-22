@@ -132,6 +132,51 @@ CREATE TABLE Customer (
   CONSTRAINT email_format_check CHECK (email->>'email' LIKE '%_@__%.%')
 );
 15.Написать DDL таблицы Orders, должен быть id, customerId, quantity. Должен быть внешний ключ на таблицу customers + constraints
+CREATE TABLE Orders (
+    id serial4 NOT NULL,
+    customerId serial4 NOT null,
+    quantity serial4 NOT null,
+    CONSTRAINT order_id_pkey PRIMARY KEY (id),
+    CONSTRAINT customerId_ref_fkey FOREIGN KEY (customerId) REFERENCES customer(id),
+    CONSTRAINT quantity_check CHECK ((quantity > 0))
+);
 16.Написать 5 insert в эти таблицы
-17.Удалить таблицы
 
+INSERT INTO Customer (first_name, last_name, email, contact_data)
+VALUES
+  ('{"first": "John"}', '{"last": "Doe"}', '{"email": "john.doe@example.com"}', '{"phone": "123-456-7890"}'),
+  ('{"first": "Jane"}', '{"last": "Smith"}', '{"email": "jane.smith@example.com"}', '{"phone": "987-654-3210"}'),
+  ('{"first": "Bob"}', '{"last": "Johnson"}', '{"email": "bob.johnson@example.com"}', NULL),
+  ('{"first": "Alice"}', '{"last": "Williams"}', '{"email": "alice.williams@example.com"}', '{"phone": "555-123-4567"}'),
+  ('{"first": "Charlie"}', '{"last": "Brown"}', '{"email": "charlie.brown@example.com"}', '{"phone": "999-888-7777"}');
+
+INSERT INTO Orders (customerId, quantity)
+VALUES
+  (1, 5),
+  (3, 2),
+  (2, 10),
+  (4, 8),
+  (5, 3);
+
+  INSERT INTO bookings.customer (first_name, last_name, email, contact_data)
+VALUES
+  ('{"first": "John"}', '{"last": "Doe"}', '{"email": "pavel.doe@example.com"}', '{"phone": "123-456-7890"}'),
+  ('{"first": "Jane"}', '{"last": "Smith"}', '{"email": "sahsa.smith@example.com"}', '{"phone": "987-654-3210"}'),
+  ('{"first": "Bob"}', '{"last": "Johnson"}', '{"email": "job.johnson@example.com"}', NULL);
+
+  INSERT INTO bookings.orders (customerId, quantity)
+VALUES
+  (16, 7),
+  (17, 1);
+
+  INSERT INTO bookings.customer (first_name, last_name, email, contact_data)
+VALUES
+   ('{"first": "Eva"}', '{"last": "Johnson"}', '"eva.johnson@example.com"', '{"phone": "111-222-3333"}'),
+  ('{"first": "Michael"}', '{"last": "Smith"}', '"michael.smith@example.com"', '{"phone": "444-555-6666"}'),
+  ('{"first": "Olivia"}', '{"last": "Miller"}', '"olivia.miller@example.com"', '{"phone": "777-888-9999"}'),
+  ('{"first": "Daniel"}', '{"last": "Brown"}', '"daniel.brown@example.com"', '{"phone": "333-666-9999"}'),
+  ('{"first": "Sophia"}', '{"last": "Davis"}', '"sophia.davis@example.com"', '{"phone": "555-888-1111"}');
+  
+17.Удалить таблицы
+DROP TABLE bookings.orders;
+DROP TABLE bookings.customer;
