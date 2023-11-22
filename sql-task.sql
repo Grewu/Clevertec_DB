@@ -115,7 +115,22 @@ WHERE f.departure_airport = 'SVX'
   AND f.arrival_airport IN ('SVO', 'VKO', 'DME') 
   AND f.status IN ('Scheduled', 'On Time', 'Delayed');
 13.Вывести самый дешевый и дорогой билет и стоимость (в одном результирующем ответе)
+select distinct 
+tf.fare_conditions,
+max(tf.amount),
+min(tf.amount) 
+FROM ticket_flights tf
+group by tf.fare_conditions;
 14.Написать DDL таблицы Customers, должны быть поля id, firstName, LastName, email, phone. Добавить ограничения на поля (constraints)
+create table Customer (
+	id serial4 not null,
+	first_name jsonb NOT NULL,
+	last_name jsonb NOT NULL,
+	email  nvarchar(255) unique NOT NULL,
+	contact_data jsonb null
+	CONSTRAINT id_pkey PRIMARY KEY (id),
+	CONSTRAINT email_format_check CHECK (email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,4}$')
+);
 15.Написать DDL таблицы Orders, должен быть id, customerId, quantity. Должен быть внешний ключ на таблицу customers + constraints
 16.Написать 5 insert в эти таблицы
 17.Удалить таблицы
