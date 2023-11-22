@@ -122,14 +122,14 @@ min(tf.amount)
 FROM ticket_flights tf
 group by tf.fare_conditions;
 14.Написать DDL таблицы Customers, должны быть поля id, firstName, LastName, email, phone. Добавить ограничения на поля (constraints)
-create table Customer (
-	id serial4 not null,
-	first_name jsonb NOT NULL,
-	last_name jsonb NOT NULL,
-	email  nvarchar(255) unique NOT NULL,
-	contact_data jsonb null
-	CONSTRAINT id_pkey PRIMARY KEY (id),
-	CONSTRAINT email_format_check CHECK (email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,4}$')
+CREATE TABLE Customer (
+    id serial4 NOT NULL,
+    first_name jsonb NOT NULL,
+    last_name jsonb NOT NULL,
+    email jsonb UNIQUE NOT NULL,
+    contact_data jsonb NULL,
+    CONSTRAINT id_pkey PRIMARY KEY (id),
+  CONSTRAINT email_format_check CHECK (email->>'email' LIKE '%_@__%.%')
 );
 15.Написать DDL таблицы Orders, должен быть id, customerId, quantity. Должен быть внешний ключ на таблицу customers + constraints
 16.Написать 5 insert в эти таблицы
