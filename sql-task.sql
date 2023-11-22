@@ -96,6 +96,19 @@ select airport_code, airport_name,city
 from airports a1
 where (select count(city) from airports a2 where a1.city = a2.city ) > 1;
 11.Найти пассажиров, у которых суммарная стоимость бронирований превышает среднюю сумму всех бронирований
+SELECT
+    t.passenger_id,
+    t.passenger_name,
+    SUM(b.total_amount) AS total_sum
+FROM
+    tickets t
+JOIN
+    bookings b ON t.book_ref = b.book_ref
+GROUP BY
+    t.passenger_id, t.passenger_name
+HAVING
+   SUM(b.total_amount) > (SELECT AVG(total_amount) FROM bookings);
+
 12.Найти ближайший вылетающий рейс из Екатеринбурга в Москву, на который еще не завершилась регистрация
 13.Вывести самый дешевый и дорогой билет и стоимость (в одном результирующем ответе)
 14.Написать DDL таблицы Customers, должны быть поля id, firstName, LastName, email, phone. Добавить ограничения на поля (constraints)
