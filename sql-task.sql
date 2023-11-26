@@ -142,13 +142,13 @@ CREATE TABLE Orders (
 );
 16.Написать 5 insert в эти таблицы
 
-INSERT INTO Customer (first_name, last_name, email, contact_data)
+INSERT INTO bookings.customer (first_name, last_name, email, contact_data)
 VALUES
-  ('{"first": "John"}', '{"last": "Doe"}', '{"email": "john.doe@example.com"}', '{"phone": "123-456-7890"}'),
-  ('{"first": "Jane"}', '{"last": "Smith"}', '{"email": "jane.smith@example.com"}', '{"phone": "987-654-3210"}'),
-  ('{"first": "Bob"}', '{"last": "Johnson"}', '{"email": "bob.johnson@example.com"}', NULL),
-  ('{"first": "Alice"}', '{"last": "Williams"}', '{"email": "alice.williams@example.com"}', '{"phone": "555-123-4567"}'),
-  ('{"first": "Charlie"}', '{"last": "Brown"}', '{"email": "charlie.brown@example.com"}', '{"phone": "999-888-7777"}');
+  ('{"first": "Eva"}', '{"last": "Johnson"}', '{"email": "eva.johnson@example.com"}', '{"phone": "111-222-3333"}'),
+  ('{"first": "Michael"}', '{"last": "Smith"}', '{"email": "michael.smith@example.com"}', '{"phone": "444-555-6666"}'),
+  ('{"first": "Olivia"}', '{"last": "Miller"}', '{"email": "olivia.miller@example.com"}', '{"phone": "777-888-9999"}'),
+  ('{"first": "Daniel"}', '{"last": "Brown"}', '{"email": "daniel.brown@example.com"}', '{"phone": "333-666-9999"}'),
+  ('{"first": "Sophia"}', '{"last": "Davis"}', '{"email": "sophia.davis@example.com"}', '{"phone": "555-888-1111"}');
 
 INSERT INTO Orders (customerId, quantity)
 VALUES
